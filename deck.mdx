@@ -1,12 +1,29 @@
 import { Head } from 'mdx-deck'
 
+import { CounterWithUseState } from './examples/Hooks/CounterWithUseState'
+
 export { default as theme } from './theme'
 
 <Head>
-  <title>Presentation Title</title>
+  <title>New React API: enabling better patterns</title>
 </Head>
 
-# Hello
+# New React API: enabling better patterns
+
+---
+
+## Using useState
+
+```jsx
+import React, {useState} from 'react';
+
+export const Counter = () => {
+  const [counter, setCounter] =  useState(0);
+  return (<button onClick={() => setCounter(counter + 1)}>{counter}</button>);
+}
+```
+
+<CounterWithUseState />
 
 ---
 
