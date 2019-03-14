@@ -44,21 +44,25 @@ by Igor Minar, Angular tech lead, [ReactiveConf 2016](https://youtu.be/41ffY2whX
 
 ---
 
+## Bugs in Facebook chat
+
 <img src="public/images/facebook-chat.png" />
 
 ---
+
+## MVC
 
 <img src="public/images/MVC.png" />
 
 ---
 
-<img src="public/images/facebook-chat.png" />
-
----
+## FLUX
 
 <img src="public/images/FLUX.png" />
 
 ---
+
+## Redux
 
 <img src="public/images/REDUX.png" />
 
@@ -96,7 +100,15 @@ since 2015
 
 ---
 
-[<img src="public/images/REDUX.png" />](public/images/react-redux-workflow-graphical-cheat-sheet.png)
+## Looks simple
+
+<img src="public/images/REDUX.png" />
+
+---
+
+## Reality...
+
+[React / Redux cheat sheet](https://github.com/uanders/react-redux-cheatsheet/blob/master/1440/react-redux-workflow-graphical-cheat-sheet_v110.png)
 
 ---
 
@@ -120,13 +132,19 @@ since 2015
 
 <img src="public/images/you-might-not-need-redux.png" />
 
+https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
+
 ---
 
 <img src="public/images/acdlite.png" />
 
+https://twitter.com/acdlite/status/1024852895814930432
+
 ---
 
 ## Thinking in React
+
+Why take Redux if you don't need it? Start with React alone. Add more stuff later.
 
 https://reactjs.org/docs/thinking-in-react.html
 
@@ -171,23 +189,6 @@ export class Counter extends React.Component {
 
 ---
 
-import { CodeSurfer } from "mdx-deck-code-surfer"
-import snippet from '!raw-loader!./examples/Context/AppWithState.js';
-
-<CodeSurfer
-  code={snippet}
-  lang="jsx"
-  dark={false}
-  steps={[
-    {},
-    { lines: [10,12], range: [4, 6], tokens: { 11: [15,16,17,18,19] }, notes: "Rendering state" },
-    { lines: [10,12], range: [7, 9], tokens: { 11: [6,7,8,9,10,11,12] }, notes: "Updating state" },
-    {}
-  ]}
-/>
-
----
-
 Using object (may fail due to asynchronicity)
 
 ```jsx
@@ -195,6 +196,8 @@ this.setState(
   { counter: this.state.counter + this.props.increment }
 );
 ```
+
+---
 
 Using function
 
@@ -232,7 +235,7 @@ incrementAction = (increment) => (state) => ({
 
 ...
 
-this.setState(this.incrementAction(this.props.increment));
+this.setState(incrementAction(this.props.increment));
 ```
 
 ---
@@ -342,7 +345,12 @@ class App extends React.Component {
   }
   render() {
     return (
-      <UserContext.Provider value={{ user: this.state.user, onLogout: this.handleLogout }}>
+      <UserContext.Provider
+        value={{
+          user: this.state.user,
+          onLogout: this.handleLogout
+        }}
+      >
         <Main />
       </UserContext.Provider>
     );
@@ -440,29 +448,72 @@ class Toolbar extends React.Component {
 ```
 
 ---
-## Using useState
+
+## Exercise
+
+---
+
+import { Counter as ExerciseCounter } from './examples/Exercise/Counter';
+
+Both buttons are re-rendered every time - they don't need to be.
+
+<ExerciseCounter />
+
+---
+
+## How?
+
+<ul>
+  <Appear>
+    <li>shouldComponentUpdate()</li>
+    <li>PureComponent - but needs to be a class component</li>
+    <li>React.memo - wrap function component</li>
+  </Appear>
+</ul>
+
+---
+
+## React.memo
 
 ```jsx
-import React, {useState} from 'react';
+React.memo(
+  (props) => <div>{props.greeting}</div>
+);
+```
 
-export const Counter = () => {
-  const [counter, setCounter] =  useState(0);
-  return (<button onClick={() => setCounter(counter + 1)}>{counter}</button>);
+---
+
+## React Suspense
+
+---
+
+### Suspense + React.lazy
+
+```jsx
+import React, {lazy, Suspense} from 'react';
+const OtherComponent = lazy(() => import('./OtherComponent'));
+
+function MyComponent() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <OtherComponent />
+    </Suspense>
+  );
 }
 ```
 
-<CounterWithUseState />
+---
+
+## React Hooks
+
+[slides by @mariouhrin](https://mariouhrin.github.io/react-hooks)
 
 ---
 
-## Edit this file
-
-To create your presentation
-
-```notes
-- Create speaker notes in fenced code blocks
-```
+## Thank you
 
 ---
+
+## Made with MDX Deck
 
 <https://github.com/jxnblk/mdx-deck>
