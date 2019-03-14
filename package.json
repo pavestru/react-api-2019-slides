@@ -7,10 +7,12 @@
     "image": "mdx-deck screenshot deck.mdx",
     "help": "mdx-deck",
     "prebuild": "rimraf dist",
-    "postbuild": "cpy --parents \"public/**\" ./dist"
+    "postbuild": "cpy --parents \"public/**\" ./dist",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "cpy-cli": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "mdx-deck": "^1.6.7",
     "mdx-deck-code-surfer": "^0.5.5",
     "raw-loader": "^1.0.0",
