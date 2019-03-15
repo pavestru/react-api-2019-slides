@@ -1,9 +1,11 @@
 
-# mdx-deck basic template
+# Presentation about new React API features in 2018/2019
 
-This was generated with [mdx-deck][]'s `npm init deck` command.
+[Published slides](https://pavestru.github.io/react-api-2019-slides/), [PDF](https://pavestru.github.io/react-api-2019-slides/react-api-2019-slides.pdf)
 
 ## Development
+
+This was generated with [mdx-deck][]'s `npm init deck` command.
 
 To run the presentation deck in development mode:
 
